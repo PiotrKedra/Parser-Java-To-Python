@@ -13,9 +13,9 @@ int_definition : INT WORD;
 boolean_definition : BOOLEAN WORD;
 string_definition : STRING WORD;
 
-int_assigne : EQUAL NUMBER SEMI;
-boolean_assigne : EQUAL BOOL_VALUE SEMI;
-string_assigne : EQUAL QUOT WORD QUOT SEMI;
+int_assigne : ASSIGN NUMBER SEMI;
+boolean_assigne : ASSIGN BOOL_VALUE SEMI;
+string_assigne : ASSIGN QUOT WORD QUOT SEMI;
 
 int_increment : PLUS PLUS WORD;
 
