@@ -2,30 +2,50 @@ grammar Java;
 
 // parser rules
 
+
 atom : BOOLEAN | INT | LEFT_PAREN expression RIGHT_PAREN;
 
+type : BOOLEAN | INT | STRING;
+
 operation : LESS | LESS_EQUAL | GREATER | GREATER_EQUAL | EQUAL | NOT_EQUAL | ANDAND | OROR;
-
-expression : EXCLAMATION expression
-	| atom operation atom
-	| atom;
-
 
 int_definition : INT WORD;
 boolean_definition : BOOLEAN WORD;
 string_definition : STRING WORD;
 
-declaration : (int_definition EQUAL NUMBER) |
-                (boolean_definition EQUAL BOOL_VALUE) |
-                (string_definition EQUAL QUOT WORD QUOT);
+int_assigne : EQUAL NUMBER SEMI;
+boolean_assigne : EQUAL BOOL_VALUE SEMI;
+string_assigne : EQUAL QUOT WORD QUOT SEMI;
 
-line : (int_definition | boolean_definition | string_definition) | declaration SEMI;
+int_increment : PLUS PLUS WORD;
 
-body : LEFT_BRACE line* RIGHT_BRACE;
+declaration : (int_definition int_assigne) |
+                (boolean_definition boolean_assigne) |
+                (string_definition string_assigne);
+
+expression : EXCLAMATION expression
+	| atom operation atom
+	| atom;
+
+line : declaration SEMI;
+
+code : (line | if_definition | while_definition | for_definition)*;
+
+body : LEFT_BRACE code RIGHT_BRACE;
 
 if_definition : IF LEFT_PAREN expression RIGHT_PAREN LEFT_BRACE body RIGHT_BRACE
                 (ELSE IF LEFT_PAREN expression RIGHT_PAREN LEFT_BRACE body RIGHT_BRACE)*
                 (ELSE LEFT_PAREN expression RIGHT_PAREN LEFT_BRACE body RIGHT_BRACE)?;
+
+while_definition : WHILE LEFT_PAREN expression RIGHT_PAREN LEFT_BRACE body RIGHT_BRACE;
+
+for_definition : FOR LEFT_PAREN int_definition int_assigne SEMI expression SEMI int_increment RIGHT_PAREN LEFT_BRACE body RIGHT_BRACE;
+
+access_modifier : (PUBLIC | PRIVATE | PROTECTED |);
+
+method : access_modifier type WORD LEFT_PAREN (type WORD)* COMMA (type WORD) RIGHT_PAREN LEFT_BRACE code RETURN WORD SEMI RIGHT_BRACE;
+
+class : access_modifier WORD LEFT_BRACE (class | method)* RIGHT_BRACE;
 
 // lexer rules
 
@@ -55,7 +75,6 @@ FOR : 'for';
 
 CLASS : 'class';
 
-VOID : 'void';
 BOOLEAN : 'boolean';
 INT : 'int';
 STRING : 'String';
