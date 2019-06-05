@@ -58,5 +58,15 @@ NEWLINE : ('\r''\n'? | '\n') -> skip;
 BLOCKCOMMENT : '/*' .*? '*/' -> skip;
 LINECOMMENT : '//' ~[\r\n]* -> skip;
 
+fragment
+DIGIT : [0-9];
+
+fragment
+NON_ZERO_DIGIT : [1-9];
+
+fragment
+LOWERCASE : [a-z];
+UPPERCASE : [A-Z];
+
 
 
