@@ -43,7 +43,7 @@ for_definition : FOR LEFT_PAREN int_definition int_assigne SEMI expression SEMI 
 
 access_modifier : (PUBLIC | PRIVATE | PROTECTED |);
 
-method : access_modifier type WORD LEFT_PAREN (type WORD)* COMMA (type WORD) RIGHT_PAREN LEFT_BRACE code RETURN WORD SEMI RIGHT_BRACE;
+method : access_modifier type WORD LEFT_PAREN (type WORD COMMA)* (type WORD) RIGHT_PAREN LEFT_BRACE code RETURN WORD SEMI RIGHT_BRACE;
 
 class : access_modifier WORD LEFT_BRACE (class | method)* RIGHT_BRACE;
 
