@@ -10,7 +10,7 @@ class JavaCodeListener(JavaListener):
         self.indentation = ''
 
     def enterClass_def(self, ctx: JavaParser.Class_defContext):
-        self.out_put.write('class ' + str(ctx.WORD())+':\n')
+        self.out_put.write('class ' +':\n')
         self.increase_indentation()
 
     def enterMethod(self, ctx: JavaParser.MethodContext):
@@ -42,8 +42,33 @@ class JavaCodeListener(JavaListener):
         self.indentation += '   '
 
     def decrease_indentation(self):
-        if len(self.indentation > 0):
+        if len(self.indentation) > 0:
             self.indentation = self.indentation[:-4]
+
+    def enterDefinition(self, ctx: JavaParser.DefinitionContext):
+        self.out_put.write(str(ctx.WORD()))
+
+    def enterAssigne(self, ctx: JavaParser.AssigneContext):
+        self.out_put.write("=")
+
+    def enterAssignment(self, ctx: JavaParser.AssignmentContext):
+        self.out_put.write(str(ctx.WORD()))
+
+
+    def enterLine(self, ctx: JavaParser.LineContext):
+        self.indent()
+
+    def exitLine(self, ctx: JavaParser.LineContext):
+        self.out_put.write('\n')
+
+    def enterValue(self, ctx: JavaParser.ValueContext):
+        for child in ctx.getChildren():
+            self.out_put.write(str(child))
+
+    def enterOperator(self, ctx: JavaParser.OperatorContext):
+        for child in ctx.getChildren():
+            self.out_put.write(str(child))
+
 
 
 

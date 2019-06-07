@@ -224,12 +224,3 @@ class JavaListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by JavaParser#file.
-    def enterFile(self, ctx:JavaParser.FileContext):
-        pass
-
-    # Exit a parse tree produced by JavaParser#file.
-    def exitFile(self, ctx:JavaParser.FileContext):
-        pass
-
-
