@@ -1,3 +1,29 @@
-{
-int bob==3;
+
+
+class kupa{
+   private void foo(){
+        int bob=2;
+        box=3;
+        box=2+3;
+        box=kupa;
+        box=3+bob;
+        int a;
+        a="assasa";
+        String a;
+
+        if((bob==3 && kupa )|| bob){
+
+        a=3;
+        }
+
+        for(int a=1; dupa; --kupa){
+
+        }
+        while (duap){
+
+        }
+
+        return dupa;
+
+    }
 }
