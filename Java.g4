@@ -3,47 +3,51 @@ grammar Java;
 // parser rules
 
 
-atom : BOOLEAN | INT | LEFT_PAREN expression RIGHT_PAREN;
+logical : V_BOOLEAN | V_INT | LEFT_PAREN expression RIGHT_PAREN;
 
-type : BOOLEAN | INT | STRING;
+type : T_BOOLEAN | T_INT | T_STRING | T_DOUBLE;
+value : V_DOUBLE | V_STRING | V_BOOLEAN | V_INT;
+comperator : LESS | LESS_EQUAL | GREATER | GREATER_EQUAL | EQUAL | NOT_EQUAL | ANDAND | OROR;
+operator : PLUS | MINUS | DIV | MUL;
 
-operation : LESS | LESS_EQUAL | GREATER | GREATER_EQUAL | EQUAL | NOT_EQUAL | ANDAND | OROR;
+operation : (WORD | value) ( operator (WORD|value))*;
 
-int_definition : INT WORD;
-boolean_definition : BOOLEAN WORD;
-string_definition : STRING WORD;
+assigne : ASSIGN operation;
 
-int_assigne : ASSIGN NUMBER SEMI;
-boolean_assigne : ASSIGN BOOL_VALUE SEMI;
-string_assigne : ASSIGN QUOT WORD QUOT SEMI;
+assignment : WORD assigne;
 
-int_increment : PLUS PLUS WORD;
+definition : type WORD;
 
-declaration : (int_definition int_assigne) |
-                (boolean_definition boolean_assigne) |
-                (string_definition string_assigne);
+declaration : definition assigne;
+
+increment : PLUS PLUS WORD;
+
+decrement : MINUS MINUS WORD;
 
 expression : EXCLAMATION expression
-	| atom operation atom
-	| atom;
+	| logical comperator logical
+	| logical;
 
-line : declaration SEMI;
+return: RETURN (WORD | value | operation | expression);
+
+line : (definition | declaration | assignment| return ) SEMI;
+
+
+if_definition : IF LEFT_PAREN expression RIGHT_PAREN body
+                (ELSE IF LEFT_PAREN expression RIGHT_PAREN body )*
+                (ELSE LEFT_PAREN expression RIGHT_PAREN body )?;
+
+while_definition : WHILE LEFT_PAREN expression RIGHT_PAREN body ;
+
+for_definition : FOR LEFT_PAREN (definition | assignment) SEMI expression SEMI (increment | decrement ) RIGHT_PAREN body ;
 
 code : (line | if_definition | while_definition | for_definition)*;
 
 body : LEFT_BRACE code RIGHT_BRACE;
 
-if_definition : IF LEFT_PAREN expression RIGHT_PAREN LEFT_BRACE body RIGHT_BRACE
-                (ELSE IF LEFT_PAREN expression RIGHT_PAREN LEFT_BRACE body RIGHT_BRACE)*
-                (ELSE LEFT_PAREN expression RIGHT_PAREN LEFT_BRACE body RIGHT_BRACE)?;
+access_modifier : (PUBLIC | PRIVATE | PROTECTED )?;
 
-while_definition : WHILE LEFT_PAREN expression RIGHT_PAREN LEFT_BRACE body RIGHT_BRACE;
-
-for_definition : FOR LEFT_PAREN int_definition int_assigne SEMI expression SEMI int_increment RIGHT_PAREN LEFT_BRACE body RIGHT_BRACE;
-
-access_modifier : (PUBLIC | PRIVATE | PROTECTED |);
-
-method : access_modifier type WORD LEFT_PAREN (type WORD COMMA)* (type WORD) RIGHT_PAREN LEFT_BRACE code RETURN WORD SEMI RIGHT_BRACE;
+method : access_modifier type WORD LEFT_PAREN ( (type WORD) | (type WORD (COMMA type WORD))*)?  RIGHT_PAREN  body;
 
 class : access_modifier WORD LEFT_BRACE (class | method)* RIGHT_BRACE;
 
@@ -75,9 +79,10 @@ FOR : 'for';
 
 CLASS : 'class';
 
-BOOLEAN : 'boolean';
-INT : 'int';
-STRING : 'String';
+T_BOOLEAN : 'boolean';
+T_INT : 'int';
+T_STRING : 'String';
+T_DOUBLE : 'Double';
 
 // operators
 
@@ -86,7 +91,8 @@ ASSIGN : '=';
 // math
 PLUS : '+';
 MINUS : '-';
-STAR : '*';
+MUL : '*';
+DIV : '/';
 
 // logic
 ANDAND : '&&';
@@ -97,6 +103,7 @@ NOT_EQUAL : '!=';
 SEMI : ';';
 COMMA : ',';
 QUOT : '"';
+DOT : '.';
 
 // skip
 WHITESPACE : (' ' | '\t')+ -> skip;
@@ -107,8 +114,10 @@ LINECOMMENT : '//' ~[\r\n]* -> skip;
 WORD : LOWERCASE LOWERCASE*;
 
 NUMBER : (NON_ZERO_DIGIT DIGIT*) | DIGIT;
-
-BOOL_VALUE : TRUE_FALSE;
+V_DOUBLE : NUMBER DOT NUMBER;
+V_BOOLEAN : TRUE_FALSE;
+V_INT : NUMBER;
+V_STRING : QUOT WORD QUOT;
 
 fragment
 TRUE_FALSE : 'true' | 'not_true';
