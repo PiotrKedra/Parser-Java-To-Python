@@ -1,7 +1,7 @@
 
 
 class kupa{
-   private void foo(){
+   private void foo(int a){
         int bob=2;
         box=3;
         box=2+3;
