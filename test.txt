@@ -1,10 +1,10 @@
 
 
 class kupa{
-   private void foo(int a){
+   public void foo(int first, int c){
         int bob=2;
         box=3;
-        box=2+3;
+        box=2+3.6 * "string" / 2;
         box=kupa;
         box=3+bob;
         int a;
@@ -17,10 +17,10 @@ class kupa{
         }
 
         for(int a=1; dupa; --kupa){
-
+            int shit=1;
         }
         while (duap){
-
+            int shit=1;
         }
 
         return dupa;

@@ -10,50 +10,33 @@ class JavaCodeListener(JavaListener):
         self.indentation = ''
 
     def enterClass_def(self, ctx: JavaParser.Class_defContext):
-        self.out_put.write('class ' +':\n')
+        self.out_put.write('class ')
+
+    def enterWord(self, ctx: JavaParser.WordContext):
+        self.out_put.write(str(ctx.WORD()))
+
+    def enterLeft_brace(self, ctx:JavaParser.Left_braceContext):
+        self.out_put.write(':\n')
         self.increase_indentation()
+
+    def exitRight_brace(self, ctx: JavaParser.Left_braceContext):
+        self.decrease_indentation()
 
     def enterMethod(self, ctx: JavaParser.MethodContext):
         self.indent()
-        index_of_word = 0
+        self.out_put.write('def ')
 
-        if ctx.STATIC():
-            method = '@staticmethod\ndef ' + str(ctx.WORD(0)) + '('
-        else:
-            method = 'def ' + str(ctx.WORD(index_of_word)) + '(self'
+    def enterLeft_paren(self, ctx: JavaParser.Left_parenContext):
+        self.out_put.write('(')
 
-        index_of_word += 1
-        while ctx.WORD(index_of_word):
-            method += ', ' + str(ctx.WORD(index_of_word))
-            index_of_word += 1
+    def enterRight_paren(self, ctx: JavaParser.Right_parenContext):
+        self.out_put.write(')')
 
-        method += '):\n'
-        self.out_put.write(method)
-        self.increase_indentation()
-
-    def exitMethod(self, ctx: JavaParser.MethodContext):
-        self.out_put.write('\n')
-        self.decrease_indentation()
-
-    def indent(self):
-        self.out_put.write(self.indentation)
-
-    def increase_indentation(self):
-        self.indentation += '   '
-
-    def decrease_indentation(self):
-        if len(self.indentation) > 0:
-            self.indentation = self.indentation[:-4]
-
-    def enterDefinition(self, ctx: JavaParser.DefinitionContext):
-        self.out_put.write(str(ctx.WORD()))
+    def enterComma_sign(self, ctx:JavaParser.Comma_signContext):
+        self.out_put.write(', ')
 
     def enterAssigne(self, ctx: JavaParser.AssigneContext):
-        self.out_put.write("=")
-
-    def enterAssignment(self, ctx: JavaParser.AssignmentContext):
-        self.out_put.write(str(ctx.WORD()))
-
+        self.out_put.write('=')
 
     def enterLine(self, ctx: JavaParser.LineContext):
         self.indent()
@@ -61,6 +44,7 @@ class JavaCodeListener(JavaListener):
     def exitLine(self, ctx: JavaParser.LineContext):
         self.out_put.write('\n')
 
+    # todo extract for digits and different?
     def enterValue(self, ctx: JavaParser.ValueContext):
         for child in ctx.getChildren():
             self.out_put.write(str(child))
@@ -69,6 +53,46 @@ class JavaCodeListener(JavaListener):
         for child in ctx.getChildren():
             self.out_put.write(str(child))
 
+    # todo what with '(' and ')' in if, while, for : we dont need them
+    def enterIf_definition(self, ctx:JavaParser.If_definitionContext):
+        self.indent()
+
+    def enterIf_kw(self, ctx:JavaParser.If_kwContext):
+        self.out_put.write('if ')
+
+    # todo else not works
+    # def enterElse_kw(self, ctx:JavaParser.Else_kwContext):
+    #     self.out_put.write('else ')
+
+    def enterWhile_definition(self, ctx:JavaParser.While_definitionContext):
+        self.indent()
+
+    def enterWhile_kw(self, ctx:JavaParser.While_kwContext):
+        self.out_put.write('while ')
+
+    def enterFor_definition(self, ctx:JavaParser.For_definitionContext):
+        self.indent()
+
+    def enterFor_kw(self, ctx:JavaParser.For_kwContext):
+        self.out_put.write('for ')
+
+    def enterReturn_kw(self, ctx:JavaParser.Return_kwContext):
+        self.out_put.write('return ')
+
+    # todo change for and_operator and or_operator
+    def enterLogic_operator(self, ctx: JavaParser.Logic_operatorContext):
+        for child in ctx.children:
+            self.out_put.write(' ' + str(child) + ' ')
+
+    def indent(self):
+        self.out_put.write(self.indentation)
+
+    def increase_indentation(self):
+        self.indentation += '    '
+
+    def decrease_indentation(self):
+        if len(self.indentation) > 0:
+            self.indentation = self.indentation[:-4]
 
 
 
