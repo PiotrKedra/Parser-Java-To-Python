@@ -1,13 +1,17 @@
-class :
-   def foo(self, a):
-      bob=2
-      box=3
-      box=2+3
-      box=
-      box=3+
-      a
-      a="assasa"
-      a
-      a=3
-a=1      
-
+class kupa:
+    def foo(first, c):
+        bob=2
+        box=3
+        box=2+3.6*"string"/2
+        box=kupa
+        box=3+bob
+        a
+        a="assasa"
+        a
+        if (bob && kupa || bob):
+            a=3
+        for i in range(10):
+            shit=1
+        while (duap(:
+            shit=1
+        return dupa

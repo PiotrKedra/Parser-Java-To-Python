@@ -17,5 +17,3 @@ htmlChat = JavaCodeListener(output)
 walker = ParseTreeWalker()
 walker.walk(htmlChat, tree)
 output.close()
-
-
