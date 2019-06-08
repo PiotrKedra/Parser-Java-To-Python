@@ -8,10 +8,10 @@ class kupa:
         a
         a="assasa"
         a
-        if (bob && kupa || bob):
+        if (bob and kupa or bob):
             a=3
-        for i in range(10):
+        for (a=1kupa):
             shit=1
-        while (duap(:
+        while (duap):
             shit=1
         return dupa

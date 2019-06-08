@@ -79,10 +79,18 @@ class JavaCodeListener(JavaListener):
     def enterReturn_kw(self, ctx:JavaParser.Return_kwContext):
         self.out_put.write('return ')
 
+    def enterAnd_operator(self, ctx: JavaParser.And_operatorContext):
+        self.out_put.write(" and ")
+
+    def enterOr_operator(self, ctx: JavaParser.Or_operatorContext):
+        self.out_put.write(' or ')
+
     # todo change for and_operator and or_operator
-    def enterLogic_operator(self, ctx: JavaParser.Logic_operatorContext):
-        for child in ctx.children:
-            self.out_put.write(' ' + str(child) + ' ')
+    # def enterLogic_operator(self, ctx: JavaParser.Logic_operatorContext):
+    #     for child in ctx.children:
+    #         self.out_put.write(' ' + str(child) + ' ')
+
+
 
     def indent(self):
         self.out_put.write(self.indentation)

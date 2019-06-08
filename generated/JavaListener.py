@@ -44,6 +44,24 @@ class JavaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by JavaParser#and_operator.
+    def enterAnd_operator(self, ctx:JavaParser.And_operatorContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#and_operator.
+    def exitAnd_operator(self, ctx:JavaParser.And_operatorContext):
+        pass
+
+
+    # Enter a parse tree produced by JavaParser#or_operator.
+    def enterOr_operator(self, ctx:JavaParser.Or_operatorContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#or_operator.
+    def exitOr_operator(self, ctx:JavaParser.Or_operatorContext):
+        pass
+
+
     # Enter a parse tree produced by JavaParser#logic_operator.
     def enterLogic_operator(self, ctx:JavaParser.Logic_operatorContext):
         pass
@@ -332,6 +350,24 @@ class JavaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by JavaParser#for_index_virable.
+    def enterFor_index_virable(self, ctx:JavaParser.For_index_virableContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#for_index_virable.
+    def exitFor_index_virable(self, ctx:JavaParser.For_index_virableContext):
+        pass
+
+
+    # Enter a parse tree produced by JavaParser#for_condition.
+    def enterFor_condition(self, ctx:JavaParser.For_conditionContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#for_condition.
+    def exitFor_condition(self, ctx:JavaParser.For_conditionContext):
+        pass
+
+
     # Enter a parse tree produced by JavaParser#for_definition.
     def enterFor_definition(self, ctx:JavaParser.For_definitionContext):
         pass
@@ -368,12 +404,30 @@ class JavaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by JavaParser#method_params.
+    def enterMethod_params(self, ctx:JavaParser.Method_paramsContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#method_params.
+    def exitMethod_params(self, ctx:JavaParser.Method_paramsContext):
+        pass
+
+
     # Enter a parse tree produced by JavaParser#method.
     def enterMethod(self, ctx:JavaParser.MethodContext):
         pass
 
     # Exit a parse tree produced by JavaParser#method.
     def exitMethod(self, ctx:JavaParser.MethodContext):
+        pass
+
+
+    # Enter a parse tree produced by JavaParser#static_method.
+    def enterStatic_method(self, ctx:JavaParser.Static_methodContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#static_method.
+    def exitStatic_method(self, ctx:JavaParser.Static_methodContext):
         pass
 
 
