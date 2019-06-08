@@ -8,7 +8,7 @@ class kupa:
         a=None
         a="assasa"
         a=None
-        if (bob and kupa or bob):
+        if (bob and kupa) or bob:
             a=3
         for (a=1kupa):
             shit=1

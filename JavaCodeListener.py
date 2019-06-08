@@ -26,10 +26,12 @@ class JavaCodeListener(JavaListener):
         self.out_put.write('def ')
 
     def enterLeft_paren(self, ctx: JavaParser.Left_parenContext):
-        self.out_put.write('(')
+        if not isinstance(ctx.parentCtx.parentCtx, JavaParser.If_definitionContext):
+            self.out_put.write('(')
 
     def enterRight_paren(self, ctx: JavaParser.Right_parenContext):
-        self.out_put.write(')')
+        if not isinstance(ctx.parentCtx.parentCtx,JavaParser.If_definitionContext):
+            self.out_put.write(')')
 
     def enterComma_sign(self, ctx:JavaParser.Comma_signContext):
         self.out_put.write(', ')

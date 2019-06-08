@@ -3,7 +3,7 @@ grammar Java;
 // parser rules
 
 
-logical : V_BOOLEAN | V_INT | word | (LEFT_PAREN expression RIGHT_PAREN);
+logical : V_BOOLEAN | V_INT | word | (left_paren expression right_paren);
 
 var_type : T_BOOLEAN | T_INT | T_STRING | T_DOUBLE | T_VOID;
 value : V_DOUBLE | V_STRING | V_BOOLEAN | V_INT;
@@ -57,9 +57,9 @@ return_def: return_kw (word | value | operation | expression);
 line : (definition | declaration | assignment| return_def ) semi_sign;
 
 
-if_definition : if_kw left_paren expression right_paren body
-                (else_kw if_kw left_paren expression right_paren body )*
-                (else_kw left_paren expression right_paren body )?;
+if_definition : if_kw logical  body
+                (else_kw if_kw logical body )*
+                (else_kw  logical body )?;
 
 while_definition : while_kw left_paren expression right_paren body ;
 
