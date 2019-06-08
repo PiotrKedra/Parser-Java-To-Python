@@ -8,7 +8,10 @@ logical : V_BOOLEAN | V_INT | word | (LEFT_PAREN expression RIGHT_PAREN);
 var_type : T_BOOLEAN | T_INT | T_STRING | T_DOUBLE | T_VOID;
 value : V_DOUBLE | V_STRING | V_BOOLEAN | V_INT;
 comperator : LESS | LESS_EQUAL | GREATER | GREATER_EQUAL | EQUAL | NOT_EQUAL ;
-logic_operator : ANDAND | OROR;
+and_operator : ANDAND;
+or_operator : OROR;
+logic_operator : and_operator | or_operator;
+
 operator : PLUS | MINUS | DIV | MUL;
 
 word :WORD;
@@ -58,9 +61,12 @@ if_definition : if_kw left_paren expression right_paren body
                 (else_kw if_kw left_paren expression right_paren body )*
                 (else_kw left_paren expression right_paren body )?;
 
-while_definition : while_kw left_paren expression left_paren body ;
+while_definition : while_kw left_paren expression right_paren body ;
 
-for_definition : for_kw left_paren (declaration | assignment)* semi_sign expression semi_sign (increment | decrement ) right_paren body ;
+for_index_virable : declaration;
+for_condition : (WORD|NUMBER) comperator (WORD|NUMBER);
+//for_definition : for_kw left_paren (declaration | assignment)* semi_sign expression semi_sign (increment | decrement ) right_paren body ;
+for_definition : for_kw left_paren for_index_virable semi_sign for_condition semi_sign (increment | decrement ) right_paren body ;
 
 code : (line | if_definition | while_definition | for_definition)*;
 
@@ -68,9 +74,12 @@ body : left_brace code right_brace;
 
 access_modifier : (PUBLIC | PRIVATE | PROTECTED )?;
 
-method : access_modifier static_kw? var_type word left_paren ( (var_type word) | (var_type word (comma_sign var_type word))*)?  right_paren  body;
+method_params: ( (var_type word) | (var_type word (comma_sign var_type word))*)?;
+method : access_modifier var_type word left_paren method_params  right_paren  body;
 
-class_def : access_modifier class_kw word left_brace (class_def | method)* right_brace;
+static_method : access_modifier static_kw var_type word left_paren ( (var_type word) | (var_type word (comma_sign var_type word))*)? right_paren  body;
+
+class_def : access_modifier class_kw word left_brace (class_def | method | static_method)* right_brace;
 
 
 // lexer rules
