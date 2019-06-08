@@ -62,6 +62,168 @@ class JavaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by JavaParser#word.
+    def enterWord(self, ctx:JavaParser.WordContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#word.
+    def exitWord(self, ctx:JavaParser.WordContext):
+        pass
+
+
+    # Enter a parse tree produced by JavaParser#assign.
+    def enterAssign(self, ctx:JavaParser.AssignContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#assign.
+    def exitAssign(self, ctx:JavaParser.AssignContext):
+        pass
+
+
+    # Enter a parse tree produced by JavaParser#exclamtion.
+    def enterExclamtion(self, ctx:JavaParser.ExclamtionContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#exclamtion.
+    def exitExclamtion(self, ctx:JavaParser.ExclamtionContext):
+        pass
+
+
+    # Enter a parse tree produced by JavaParser#plus.
+    def enterPlus(self, ctx:JavaParser.PlusContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#plus.
+    def exitPlus(self, ctx:JavaParser.PlusContext):
+        pass
+
+
+    # Enter a parse tree produced by JavaParser#minus.
+    def enterMinus(self, ctx:JavaParser.MinusContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#minus.
+    def exitMinus(self, ctx:JavaParser.MinusContext):
+        pass
+
+
+    # Enter a parse tree produced by JavaParser#left_paren.
+    def enterLeft_paren(self, ctx:JavaParser.Left_parenContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#left_paren.
+    def exitLeft_paren(self, ctx:JavaParser.Left_parenContext):
+        pass
+
+
+    # Enter a parse tree produced by JavaParser#right_paren.
+    def enterRight_paren(self, ctx:JavaParser.Right_parenContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#right_paren.
+    def exitRight_paren(self, ctx:JavaParser.Right_parenContext):
+        pass
+
+
+    # Enter a parse tree produced by JavaParser#return_kw.
+    def enterReturn_kw(self, ctx:JavaParser.Return_kwContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#return_kw.
+    def exitReturn_kw(self, ctx:JavaParser.Return_kwContext):
+        pass
+
+
+    # Enter a parse tree produced by JavaParser#if_kw.
+    def enterIf_kw(self, ctx:JavaParser.If_kwContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#if_kw.
+    def exitIf_kw(self, ctx:JavaParser.If_kwContext):
+        pass
+
+
+    # Enter a parse tree produced by JavaParser#else_kw.
+    def enterElse_kw(self, ctx:JavaParser.Else_kwContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#else_kw.
+    def exitElse_kw(self, ctx:JavaParser.Else_kwContext):
+        pass
+
+
+    # Enter a parse tree produced by JavaParser#right_brace.
+    def enterRight_brace(self, ctx:JavaParser.Right_braceContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#right_brace.
+    def exitRight_brace(self, ctx:JavaParser.Right_braceContext):
+        pass
+
+
+    # Enter a parse tree produced by JavaParser#left_brace.
+    def enterLeft_brace(self, ctx:JavaParser.Left_braceContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#left_brace.
+    def exitLeft_brace(self, ctx:JavaParser.Left_braceContext):
+        pass
+
+
+    # Enter a parse tree produced by JavaParser#class_kw.
+    def enterClass_kw(self, ctx:JavaParser.Class_kwContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#class_kw.
+    def exitClass_kw(self, ctx:JavaParser.Class_kwContext):
+        pass
+
+
+    # Enter a parse tree produced by JavaParser#static_kw.
+    def enterStatic_kw(self, ctx:JavaParser.Static_kwContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#static_kw.
+    def exitStatic_kw(self, ctx:JavaParser.Static_kwContext):
+        pass
+
+
+    # Enter a parse tree produced by JavaParser#for_kw.
+    def enterFor_kw(self, ctx:JavaParser.For_kwContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#for_kw.
+    def exitFor_kw(self, ctx:JavaParser.For_kwContext):
+        pass
+
+
+    # Enter a parse tree produced by JavaParser#while_kw.
+    def enterWhile_kw(self, ctx:JavaParser.While_kwContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#while_kw.
+    def exitWhile_kw(self, ctx:JavaParser.While_kwContext):
+        pass
+
+
+    # Enter a parse tree produced by JavaParser#semi_sign.
+    def enterSemi_sign(self, ctx:JavaParser.Semi_signContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#semi_sign.
+    def exitSemi_sign(self, ctx:JavaParser.Semi_signContext):
+        pass
+
+
+    # Enter a parse tree produced by JavaParser#comma_sign.
+    def enterComma_sign(self, ctx:JavaParser.Comma_signContext):
+        pass
+
+    # Exit a parse tree produced by JavaParser#comma_sign.
+    def exitComma_sign(self, ctx:JavaParser.Comma_signContext):
+        pass
+
+
     # Enter a parse tree produced by JavaParser#operation.
     def enterOperation(self, ctx:JavaParser.OperationContext):
         pass

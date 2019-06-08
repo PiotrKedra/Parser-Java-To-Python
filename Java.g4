@@ -3,7 +3,7 @@ grammar Java;
 // parser rules
 
 
-logical : V_BOOLEAN | V_INT | WORD | (LEFT_PAREN expression RIGHT_PAREN);
+logical : V_BOOLEAN | V_INT | word | (LEFT_PAREN expression RIGHT_PAREN);
 
 var_type : T_BOOLEAN | T_INT | T_STRING | T_DOUBLE | T_VOID;
 value : V_DOUBLE | V_STRING | V_BOOLEAN | V_INT;
@@ -11,47 +11,66 @@ comperator : LESS | LESS_EQUAL | GREATER | GREATER_EQUAL | EQUAL | NOT_EQUAL ;
 logic_operator : ANDAND | OROR;
 operator : PLUS | MINUS | DIV | MUL;
 
-operation : (WORD | value) ( operator (WORD|value))*;
+word :WORD;
+assign : ASSIGN;
+exclamtion : EXCLAMATION;
+plus : PLUS;
+minus : MINUS;
+left_paren :LEFT_PAREN;
+right_paren : RIGHT_PAREN;
+return_kw : RETURN;
+if_kw : IF;
+else_kw : ELSE;
+right_brace : RIGHT_BRACE;
+left_brace : LEFT_BRACE;
+class_kw : CLASS;
+static_kw : STATIC;
+for_kw : FOR;
+while_kw : WHILE;
+semi_sign : SEMI;
+comma_sign : COMMA;
 
-assigne : ASSIGN operation;
+operation : (word | value) ( operator (word|value))*;
 
-assignment : WORD assigne;
+assigne : assign operation;
 
-definition : var_type WORD;
+assignment : word assigne;
+
+definition : var_type word;
 
 declaration : definition assigne;
 
-increment : PLUS PLUS WORD;
+increment : plus plus word;
 
-decrement : MINUS MINUS WORD;
+decrement : minus minus word;
 
-expression : EXCLAMATION expression
+expression : exclamtion expression
 	| logical
 	| logical comperator logical
 	|expression logic_operator expression;
 
-return_def: RETURN (WORD | value | operation | expression);
+return_def: return_kw (word | value | operation | expression);
 
-line : (definition | declaration | assignment| return_def ) SEMI;
+line : (definition | declaration | assignment| return_def ) semi_sign;
 
 
-if_definition : IF LEFT_PAREN expression RIGHT_PAREN body
-                (ELSE IF LEFT_PAREN expression RIGHT_PAREN body )*
-                (ELSE LEFT_PAREN expression RIGHT_PAREN body )?;
+if_definition : if_kw left_paren expression right_paren body
+                (else_kw if_kw left_paren expression right_paren body )*
+                (else_kw left_paren expression right_paren body )?;
 
-while_definition : WHILE LEFT_PAREN expression RIGHT_PAREN body ;
+while_definition : while_kw left_paren expression left_paren body ;
 
-for_definition : FOR LEFT_PAREN (declaration | assignment)* SEMI expression SEMI (increment | decrement ) RIGHT_PAREN body ;
+for_definition : for_kw left_paren (declaration | assignment)* semi_sign expression semi_sign (increment | decrement ) right_paren body ;
 
 code : (line | if_definition | while_definition | for_definition)*;
 
-body : LEFT_BRACE code RIGHT_BRACE;
+body : left_brace code right_brace;
 
 access_modifier : (PUBLIC | PRIVATE | PROTECTED )?;
 
-method : access_modifier STATIC? var_type WORD LEFT_PAREN ( (var_type WORD) | (var_type WORD (COMMA var_type WORD))*)?  RIGHT_PAREN  body;
+method : access_modifier static_kw? var_type word left_paren ( (var_type word) | (var_type word (comma_sign var_type word))*)?  right_paren  body;
 
-class_def : access_modifier CLASS WORD LEFT_BRACE (class_def | method)* RIGHT_BRACE;
+class_def : access_modifier class_kw word left_brace (class_def | method)* right_brace;
 
 
 // lexer rules
