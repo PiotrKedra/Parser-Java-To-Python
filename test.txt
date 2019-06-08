@@ -19,7 +19,7 @@ class kupa{
         for(int a=1; dupa; --kupa){
             int shit=1;
         }
-        while (duap){
+        while (duap || (nop && lol)){
             int shit=1;
         }
 

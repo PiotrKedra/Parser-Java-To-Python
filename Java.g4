@@ -61,7 +61,7 @@ if_definition : if_kw logical  body
                 (else_kw if_kw logical body )*
                 (else_kw  logical body )?;
 
-while_definition : while_kw left_paren expression right_paren body ;
+while_definition : while_kw logical body ;
 
 for_index_virable : declaration;
 for_condition : (WORD|NUMBER) comperator (WORD|NUMBER);

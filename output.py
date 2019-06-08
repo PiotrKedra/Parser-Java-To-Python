@@ -12,6 +12,6 @@ class kupa:
             a=3
         for (a=1kupa):
             shit=1
-        while (duap):
+        while duap or (nop and lol):
             shit=1
         return dupa
