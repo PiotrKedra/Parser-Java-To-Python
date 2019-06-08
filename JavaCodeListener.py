@@ -1,7 +1,6 @@
 from generated.JavaListener import JavaListener
 from generated.JavaParser import JavaParser
 
-
 class JavaCodeListener(JavaListener):
 
     def __init__(self, out_put) -> None:
@@ -85,12 +84,9 @@ class JavaCodeListener(JavaListener):
     def enterOr_operator(self, ctx: JavaParser.Or_operatorContext):
         self.out_put.write(' or ')
 
-    # todo change for and_operator and or_operator
-    # def enterLogic_operator(self, ctx: JavaParser.Logic_operatorContext):
-    #     for child in ctx.children:
-    #         self.out_put.write(' ' + str(child) + ' ')
-
-
+    def exitDefinition(self, ctx: JavaParser.DefinitionContext):
+        if not isinstance(ctx.parentCtx,JavaParser.DeclarationContext):
+            self.out_put.write("=None")
 
     def indent(self):
         self.out_put.write(self.indentation)

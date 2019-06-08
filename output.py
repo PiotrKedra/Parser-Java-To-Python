@@ -5,9 +5,9 @@ class kupa:
         box=2+3.6*"string"/2
         box=kupa
         box=3+bob
-        a
+        a=None
         a="assasa"
-        a
+        a=None
         if (bob and kupa or bob):
             a=3
         for (a=1kupa):
