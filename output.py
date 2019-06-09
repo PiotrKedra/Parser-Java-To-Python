@@ -1,5 +1,9 @@
 class kupa:
-    def foo(first, c):
+    @staticmethod
+    def staticmethod(a, v):
+        tmp=a
+
+    def foo(self, first, c):
         bob=2
         box=3
         box=2+3.6*"string"/2
@@ -10,7 +14,7 @@ class kupa:
         a=None
         if (bob and kupa) or bob:
             a=3
-        for (a=1kupa):
+        (a=1x, ykupa):
             shit=1
         while duap or (nop and lol):
             shit=1

@@ -1,6 +1,7 @@
 from generated.JavaListener import JavaListener
 from generated.JavaParser import JavaParser
 
+
 class JavaCodeListener(JavaListener):
 
     def __init__(self, out_put) -> None:
@@ -25,6 +26,20 @@ class JavaCodeListener(JavaListener):
         self.indent()
         self.out_put.write('def ')
 
+    def enterMethod_params(self, ctx:JavaParser.Method_paramsContext):
+        self.out_put.write('self')
+        if ctx.children:
+            self.out_put.write(', ')
+
+    def enterStatic_method(self, ctx:JavaParser.Static_methodContext):
+        self.indent()
+        self.out_put.write('@staticmethod\n')
+        self.indent()
+        self.out_put.write('def ')
+
+    def exitStatic_method(self, ctx:JavaParser.Static_methodContext):
+        self.out_put.write('\n')
+
     # PARENS
     def enterLeft_paren(self, ctx: JavaParser.Left_parenContext):
         if not isinstance(ctx.parentCtx.parentCtx, JavaParser.If_definitionContext) and not isinstance(ctx.parentCtx.parentCtx,JavaParser.While_definitionContext) :
@@ -34,8 +49,7 @@ class JavaCodeListener(JavaListener):
         if not isinstance(ctx.parentCtx.parentCtx,JavaParser.If_definitionContext) and not isinstance(ctx.parentCtx.parentCtx,JavaParser.While_definitionContext) :
             self.out_put.write(')')
 
-
-    def enterComma_sign(self, ctx:JavaParser.Comma_signContext):
+    def enterComma_sign(self, ctx: JavaParser.Comma_signContext):
         self.out_put.write(', ')
 
     def enterAssigne(self, ctx: JavaParser.AssigneContext):
@@ -75,7 +89,13 @@ class JavaCodeListener(JavaListener):
 
     def enterFor_definition(self, ctx:JavaParser.For_definitionContext):
         self.indent()
+        # index = str(ctx.for_index_virable().WORD())
+        # self.out_put.write('for ' + index + ' in range')
 
+    def enterFor_condition(self, ctx:JavaParser.For_conditionContext):
+        self.out_put.write(str(ctx.children[0]) + ', ' + str(ctx.children[2]))
+
+    # todo here for now workin
     def enterFor_kw(self, ctx:JavaParser.For_kwContext):
         self.out_put.write('for ')
 
@@ -89,7 +109,7 @@ class JavaCodeListener(JavaListener):
         self.out_put.write(' or ')
 
     def exitDefinition(self, ctx: JavaParser.DefinitionContext):
-        if not isinstance(ctx.parentCtx,JavaParser.DeclarationContext):
+        if not isinstance(ctx.parentCtx, JavaParser.DeclarationContext):
             self.out_put.write("=None")
 
     def indent(self):

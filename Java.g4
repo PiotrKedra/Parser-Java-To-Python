@@ -63,8 +63,8 @@ if_definition : if_kw logical  body
 
 while_definition : while_kw logical body ;
 
-for_index_virable : declaration;
-for_condition : (WORD|NUMBER) comperator (WORD|NUMBER);
+for_index_virable : T_INT WORD ASSIGN T_INT;
+for_condition : (WORD|V_INT) comperator (WORD|V_INT);
 //for_definition : for_kw left_paren (declaration | assignment)* semi_sign expression semi_sign (increment | decrement ) right_paren body ;
 for_definition : for_kw left_paren for_index_virable semi_sign for_condition semi_sign (increment | decrement ) right_paren body ;
 

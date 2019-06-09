@@ -1,6 +1,10 @@
 
 
 class kupa{
+
+    public static void staticmethod(int a, int v){
+        int tmp = a;
+    }
    public void foo(int first, int c){
         int bob=2;
         box=3;
@@ -16,7 +20,7 @@ class kupa{
         a=3;
         }
 
-        for(int a=1; dupa; --kupa){
+        for(int a=1; x > y; --kupa){
             int shit=1;
         }
         while (duap || (nop && lol)){
